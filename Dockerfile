@@ -7,14 +7,13 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
         libtool \
         make \
         pkgconf \
-    && apt-get clean && rm -rf /var/lib/apt/lists/* \
     && curl -o - 'https://ftp.gnu.org/gnu/libcdio/libcdio-2.1.0.tar.bz2' | tar jxf - \
     && cd libcdio-2.1.0 \
     && autoreconf -fi \
     && ./configure --disable-dependency-tracking --disable-cxx --disable-example-progs --disable-static \
     && make install \
     && cd .. \
-    && rm -rf libcdio-2.1.0
+    && rm -rf libcdio-2.1.0 \
     && curl -o - 'https://ftp.gnu.org/gnu/libcdio/libcdio-paranoia-10.2+2.0.0.tar.bz2' | tar jxf - \
     && cd libcdio-paranoia-10.2+2.0.0 \
     && autoreconf -fi \
@@ -40,7 +39,7 @@ RUN useradd -m worker -G cdrom \
 VOLUME ["/home/worker/.config/whipper", "/output"]
 
 # setup locales + cleanup
-RUN apt-get install --no-install-recommends -y locales \
+RUN apt-get update && apt-get install --no-install-recommends -y locales \
     && echo "LC_ALL=en_US.UTF-8" >> /etc/environment \
     && echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen \
     && echo "LANG=en_US.UTF-8" > /etc/locale.conf \
@@ -52,7 +51,7 @@ RUN apt-get install --no-install-recommends -y locales \
 # install whipper
 RUN mkdir /whipper
 COPY . /whipper/
-RUN cd /whipper \
+RUN cd /whipper && apt-get update \
     && apt-get install --no-install-recommends -y \
         cdrdao \
         eject \
