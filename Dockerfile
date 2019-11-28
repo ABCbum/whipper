@@ -60,6 +60,7 @@ RUN cd /whipper && apt-get update \
         cdrdao \
         eject \
         flac \
+        gcc \
         gir1.2-glib-2.0 \
         git \
         libiso9660-dev \
@@ -79,6 +80,7 @@ RUN cd /whipper && apt-get update \
     && python3 setup.py install \
     && rm -rf /whipper \
     && apt-get purge -y \
+        gcc \
         gir1.2-glib-2.0 \
         git \
         libiso9660-dev \
