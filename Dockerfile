@@ -57,8 +57,6 @@ RUN mkdir /whipper
 COPY . /whipper/
 RUN cd /whipper && apt-get update \
     && apt-get install --no-install-recommends -y \
-        autoconf \
-        automake \
         cdrdao \
         eject \
         flac \
@@ -67,8 +65,7 @@ RUN cd /whipper && apt-get update \
         libiso9660-dev \
         libsndfile1 \
         libsndfile1-dev \
-        make \
-        pkgconf \
+        libtool \
         python3-dev \
         python3-gi \
         python3-musicbrainzngs \
@@ -83,14 +80,11 @@ RUN cd /whipper && apt-get update \
     && python3 setup.py install \
     && rm -rf /whipper \
     && apt-get purge -y \
-        autoconf \
-        automake \
         gir1.2-glib-2.0 \
         git \
         libiso9660-dev \
         libsndfile1-dev \
-        make \
-        pkgconf \
+        libtool \
         python3-dev \
         python3-pip \
         python3-setuptools \
