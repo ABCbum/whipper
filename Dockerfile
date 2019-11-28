@@ -4,6 +4,7 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
         autoconf \
         automake \
         bzip2 \
+        curl \
         libtool \
         make \
         pkgconf \
@@ -26,6 +27,7 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
         autoconf \
         automake \
         bzip2 \
+        curl \
         libtool \
         make \
         pkgconf \
